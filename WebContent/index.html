@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>PA3 - Theatre Mashup Service</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<style>
+body {
+    background-color: #d0e4fe;
+}
+
+h1 {
+    color: orange;
+    text-align: center;
+}
+
+p {
+    font-family: "Times New Roman";
+    font-size: 20px;
+}
+
+#hotelHeader {
+
+  margin-left:auto;
+  margin-right:auto;
+  width:960px;
+
+}
+</style>
+
+<body>
+<h1 id="theatreHeader">Welcome to PA3!!!</h1>
+<button id="list_all_theatre_play_button" type="submit" class="btn btn-lg btn-primary">LIST OF ALL THEATRE PLAYS</button>
+<br>
+<button id="list_genres_button" type="button" class="btn btn-lg btn-primary">LIST OF GENRES</button>
+<br>
+<button id="list_play_review_by_date" type="button" class="btn btn-lg btn-primary">LIST PLAY REVIEWS BY DATE</button>
+<br>
+<button id="list_play_review_by_source" type="button" class="btn btn-lg btn-primary">LIST PLAY REVIEWS BY SOURCE</button>	
+<br>	
+<button id="search_by_name_button" type="button" class="btn btn-lg btn-primary">SEARCH</button>
+<br>
+	<div id="search_by_name_id">
+		<form>
+			<p>Please enter the name of the play.</p>
+			Name: <input type="text" id="name">
+		</form>
+		<button id="submit_search_by_name_button" type="button"
+			class="btn btn-lg btn-primary">SUBMIT</button>
+	</div>
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/app.js"></script>
+
+
+</body>
+</html>
