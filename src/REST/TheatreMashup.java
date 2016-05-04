@@ -1,53 +1,74 @@
 package REST;
-import java.sql.Timestamp;
-import java.util.Calendar;
 
 import javax.xml.bind.annotation.*;
 
-@XmlRootElement(name = "todo")
-@XmlType(propOrder ={"id", "todo_message","timestamp"})
+@XmlRootElement(name = "theatremashup")
+@XmlType(propOrder ={"review_id", "review_source","play_name", "title", "review_date", "genre", "critique"})
 public class TheatreMashup {
 	
-	private int id;
-	private String todo_message;
-	private Timestamp timestamp;
+	private int review_id;
+	private String review_source;
+	private String play_name;
+	private String title;
+	private String review_date;
+	private String genre;
+	private String critique;
+
 	
 	public TheatreMashup(){}	
 	
 	public int getId() {
-		return id;
+		return review_id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int review_id) {
+		this.review_id = review_id;
 	}
-	public String getMessage() {
-		return todo_message;
+	public String getReviewSource() {
+		return review_source;
 	}
-	public void setToDoMessage(String todo_message) {
-		this.todo_message = todo_message;
+	public void setReviewSource(String review_source) {
+		this.review_source = review_source;
 	}
-	public Timestamp getTimestamp() {
-		return timestamp;
+	public String getPlayName() {
+		return play_name;
 	}
-	public void setTimestamp() {
-		// 1) create a java calendar instance
-		Calendar calendar = Calendar.getInstance();
-		 
-		// 2) get a java.util.Date from the calendar instance.
-		//    this date will represent the current instant, or "now".
-		java.util.Date now = calendar.getTime();
-		 
-		// 3) a java current time (now) instance
-		java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
-		this.timestamp = currentTimestamp;
+	public void setPlayName(String play_name) {
+		this.play_name = play_name;
 	}
-	
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
-	}	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getReviewDate() {
+		return review_date;
+	}
+	public void setReviewDate(String review_date) {
+		this.review_date = review_date;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public String getCritique() {
+		return critique;
+	}
+	public void setCritique(String critique) {
+		this.critique = critique;
+	}
+
 
 public String toString(){
-	return "Message #" + this.id + ": " + this.todo_message;
+	return "Review #" + this.review_id + ": " + "\n" + 
+						this.review_source + "\n" +  
+						this.play_name + "\n" + 
+						this.title + "\n" + 
+						this.review_date + "\n" + 
+						this.genre + "\n" + 
+						this.critique + "\n";
 }
 
 //HELPER METHOD TO USE INDEX_OF FOR LIST
