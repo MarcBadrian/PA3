@@ -32,12 +32,20 @@ public class TheatreMashups {
 	
 	@GET
 	@Produces({ MediaType.TEXT_PLAIN })
+	@Path("/plays")
+	public String getPlays() {
+		return "TRUE";
+	}
+	
+	@GET
+	@Produces({ MediaType.TEXT_PLAIN })
 	@Path("/plays/all")
 	public Response getAllPlays() {
 		ConcurrentHashMap<Integer, String[]>  allBroadwayReviews = serverBroadway.getAllReviews();
 		ConcurrentHashMap<Integer, String[]> allNYTimesReviews = serverNYTimes.getAllReviews();
 		ConcurrentHashMap<Integer, String[]> allPlaybillReviews = serverPlaybill.getAllReviews();
 		ArrayList<String> plays = new ArrayList<String>();
+		try {
 		Set<Integer> broadwayKeys=allBroadwayReviews.keySet();
 		for(Integer key :broadwayKeys){
 			String[] review = allBroadwayReviews.get(key);
@@ -61,6 +69,9 @@ public class TheatreMashups {
 			if (!plays.contains(name)){
 				plays.add(name);
 			}
+		}
+		} catch (Exception e) {
+			return Response.status(500).build();
 		}
 		String playNames = String.join("|", plays);
 		return Response.ok(playNames,"text/plain").build();
@@ -201,6 +212,46 @@ public class TheatreMashups {
 				String critique = review[3].trim();
 				html += "<h1>" + title + "</h1> <br> <h2>Publication: Playbill &emsp&emsp&emsp&emsp&emsp&emsp Review Date: " + date + "</h2> <br> <p>" + critique + "</p> <br> <br>";
 				
+			}
+			
+		}
+		
+		return Response.ok(html,"text/html").build();
+	}
+	
+	
+	@GET
+	@Produces({ MediaType.TEXT_HTML })
+	@Path("/plays/dates") 
+	public Response getReviewsByDateSorted() {
+		ConcurrentHashMap<Integer, String[]>  allBroadwayReviews = serverBroadway.getAllReviews();
+		ConcurrentHashMap<Integer, String[]> allNYTimesReviews = serverNYTimes.getAllReviews();
+		ConcurrentHashMap<Integer, String[]> allPlaybillReviews = serverPlaybill.getAllReviews();
+		String html = "";
+		ArrayList<String> dates = new ArrayList<String>();
+		Set<Integer> broadwayKeys=allBroadwayReviews.keySet();
+		for(Integer key :broadwayKeys){
+			String[] review = allBroadwayReviews.get(key);
+			String date = review[2].trim();
+			if (!dates.contains(date)){
+				dates.add(date);
+			}
+		}
+		Set<Integer> nytimesKeys=allNYTimesReviews.keySet();
+		for(Integer key :nytimesKeys){
+			String[] review = allNYTimesReviews.get(key);
+			String date = review[2].trim();
+			if (!dates.contains(date)){
+				dates.add(date);
+			}
+			
+		}
+		Set<Integer> playbillKeys=allPlaybillReviews.keySet();
+		for(Integer key :playbillKeys){
+			String[] review = allPlaybillReviews.get(key);
+			String date = review[2].trim();
+			if (!dates.contains(date)){
+				dates.add(date);
 			}
 			
 		}
